@@ -1,21 +1,28 @@
-import React from "react";
+import React, { Component } from "react";
 import "../styles/formField.css";
 
-function PasswordField() {
-  return (
-    <div>
-      <label className="signup-label" for="password">
-        Password
-      </label>
-      <input
-        id="password"
-        className="signup-input"
-        required
-        minlength="2"
-        maxlength="50"
-      />
-    </div>
-  );
+class PasswordField extends Component {
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    return (
+      <div>
+        <label className="signup-label" htmlFor="password">
+          Password
+        </label>
+        <input
+          id="password"
+          className="signup-input"
+          required
+          minLength="2"
+          maxLength="50"
+          onChange={this.props.handlePasswordChange}
+        />
+      </div>
+    );
+  }
 }
 
 export default PasswordField;
