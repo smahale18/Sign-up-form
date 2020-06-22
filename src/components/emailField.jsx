@@ -1,21 +1,28 @@
-import React from "react";
+import React, { Component } from "react";
 import "../styles/formField.css";
 
-function EmailField() {
-  return (
-    <div>
-      <label className="signup-label" for="Email">
-        Email Address
-      </label>
-      <input
-        id="Email"
-        className="signup-input"
-        required
-        minlength="2"
-        maxlength="254"
-      />
-    </div>
-  );
+class EmailField extends Component {
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    return (
+      <div>
+        <label className="signup-label" htmlFor="Email">
+          Email Address
+        </label>
+        <input
+          id="Email"
+          className="signup-input"
+          required
+          minLength="2"
+          maxLength="254"
+          onChange={this.props.handleEmailChange}
+        />
+      </div>
+    );
+  }
 }
 
 export default EmailField;
