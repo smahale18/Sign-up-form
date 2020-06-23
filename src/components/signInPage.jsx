@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "../styles/signUpFormBody.css";
+import { Redirect } from "react-router-dom";
 
 class SignInPage extends Component {
   constructor(props) {
@@ -7,7 +8,7 @@ class SignInPage extends Component {
   }
 
   render() {
-    return (
+    return this.props.firstName && this.props.email ? (
       <div className="signup-box">
         <h1>
           <span className="signup-heading-smallerFont">Welcome</span>
@@ -28,6 +29,8 @@ class SignInPage extends Component {
           Sign In
         </button>
       </div>
+    ) : (
+      <Redirect from="/signin" to="/signup" />
     );
   }
 }

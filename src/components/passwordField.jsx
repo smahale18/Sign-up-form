@@ -14,6 +14,7 @@ class PasswordField extends Component {
         </label>
         <input
           id="password"
+          type="password"
           className="signup-input"
           required
           minLength="2"

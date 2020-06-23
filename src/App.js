@@ -45,6 +45,7 @@ class App extends Component {
                 email={this.state.email}
               />
             )}
+            exact
           />
         </BrowserRouter>
       </div>

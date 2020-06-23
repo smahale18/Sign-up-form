@@ -13,8 +13,9 @@ class SignUpForm extends Component {
       redirect: false,
     };
 
+    this.emailRef = React.createRef();
+
     this.validateInputs = this.validateInputs.bind(this);
-    this.validateEmail = this.validateEmail.bind(this);
   }
 
   render() {
@@ -31,22 +32,20 @@ class SignUpForm extends Component {
           Use the form below to sign up for this super awesome service. You're
           only a few steps away!
         </p>
-        <form>
+        <form onSubmit={this.validateInputs}>
           <FirstNameField
             handleFirstNameChange={this.props.handleFirstNameChange}
           ></FirstNameField>
           <EmailField
             handleEmailChange={this.props.handleEmailChange}
+            email={this.props.email}
+            ref={this.emailRef}
           ></EmailField>
           <PasswordField
             handlePasswordChange={this.props.handlePasswordChange}
           ></PasswordField>
           {this.renderRedirect()}
-          <button
-            type="submit"
-            className="signup-button"
-            onClick={this.validateInputs}
-          >
+          <button type="submit" className="signup-button">
             Sign Up
           </button>
         </form>
@@ -54,18 +53,13 @@ class SignUpForm extends Component {
     );
   }
 
-  validateInputs() {
-    if (this.validateEmail()) {
+  validateInputs(e) {
+    e.preventDefault();
+    if (this.emailRef.current.validateEmail()) {
       this.setState({
         redirect: true,
       });
     }
-  }
-
-  validateEmail() {
-    // regex for email address verification
-    let re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return re.test(this.props.email);
   }
 
   renderRedirect = () => {
