@@ -4,6 +4,13 @@ import "../styles/formField.css";
 class PasswordField extends Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      isCorrectPassword: true,
+      passwordErrorText: "",
+    };
+
+    this.validatePassword = this.validatePassword.bind(this);
   }
 
   render() {
@@ -16,13 +23,44 @@ class PasswordField extends Component {
           id="password"
           type="password"
           className="signup-input"
-          required
-          minLength="2"
-          maxLength="50"
+          //required
+          //minLength="2"
+          //maxLength="50"
           onChange={this.props.handlePasswordChange}
         />
+        {!this.state.isCorrectPassword && (
+          <div className="error-field">{this.state.passwordErrorText}</div>
+        )}
       </div>
     );
+  }
+
+  validatePassword() {
+    let password = this.props.password;
+    let isPasswordFlag = this.state.isCorrectPassword;
+    let errorText = "";
+
+    let rp = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/;
+
+    if (password.length === 0) {
+      isPasswordFlag = false;
+      errorText = "Password cannot be empty";
+    }
+    // regex for email address verification
+    else if (rp.test(password)) {
+      isPasswordFlag = true;
+      errorText = "";
+    } else {
+      isPasswordFlag = false;
+      errorText =
+        "Password must contain at least 1 lowercase,  at least 1 uppercase alphabetical character, at least 1 numeric character, at least one special character and must  be eight characters or longer";
+    }
+
+    this.setState({
+      isCorrectPassword: isPasswordFlag,
+      passwordErrorText: errorText,
+    });
+    return isPasswordFlag;
   }
 }
 

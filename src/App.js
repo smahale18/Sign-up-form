@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "./App.css";
 import SignUpForm from "./components/signUpFormBody";
 import SignInPage from "./components/signInPage";
-import { BrowserRouter, Route } from "react-router-dom";
+import { BrowserRouter, Route, Redirect } from "react-router-dom";
 
 class App extends Component {
   constructor(props) {
@@ -23,6 +23,7 @@ class App extends Component {
     return (
       <div className="App-body">
         <BrowserRouter>
+          <Route exact path="/" component={() => <Redirect to="/signup" />} />
           <Route
             path="/signup"
             render={(props) => (
@@ -31,7 +32,9 @@ class App extends Component {
                 handleFirstNameChange={this.handleFirstNameChange}
                 handleEmailChange={this.handleEmailChange}
                 handlePasswordChange={this.handlePasswordChange}
+                firstName={this.state.firstName}
                 email={this.state.email}
+                password={this.state.password}
               />
             )}
             exact
