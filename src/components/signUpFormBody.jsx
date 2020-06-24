@@ -13,7 +13,9 @@ class SignUpForm extends Component {
       redirect: false,
     };
 
+    this.firstNameRef = React.createRef();
     this.emailRef = React.createRef();
+    this.passwordRef = React.createRef();
 
     this.validateInputs = this.validateInputs.bind(this);
   }
@@ -35,6 +37,8 @@ class SignUpForm extends Component {
         <form onSubmit={this.validateInputs}>
           <FirstNameField
             handleFirstNameChange={this.props.handleFirstNameChange}
+            firstName={this.props.firstName}
+            ref={this.firstNameRef}
           ></FirstNameField>
           <EmailField
             handleEmailChange={this.props.handleEmailChange}
@@ -43,6 +47,8 @@ class SignUpForm extends Component {
           ></EmailField>
           <PasswordField
             handlePasswordChange={this.props.handlePasswordChange}
+            password={this.props.password}
+            ref={this.passwordRef}
           ></PasswordField>
           {this.renderRedirect()}
           <button type="submit" className="signup-button">
@@ -55,7 +61,11 @@ class SignUpForm extends Component {
 
   validateInputs(e) {
     e.preventDefault();
-    if (this.emailRef.current.validateEmail()) {
+    if (
+      this.firstNameRef.current.validateFirstName() &
+      this.emailRef.current.validateEmail() &
+      this.passwordRef.current.validatePassword()
+    ) {
       this.setState({
         redirect: true,
       });
