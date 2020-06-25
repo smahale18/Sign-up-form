@@ -58,7 +58,7 @@ class PasswordField extends Component {
           <li>at least 1 lowercase character</li>
           <li>at least 1 uppercase character</li>
           <li>at least 1 numeric character</li>
-          <li>at least 1 special character out of *[!@#$%^&*] </li>
+          <li>at least 1 special character out of [!@#$%^&*] </li>
           <li>be eight characters or longer</li>
         </ul>
       );
