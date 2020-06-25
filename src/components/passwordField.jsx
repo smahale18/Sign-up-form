@@ -52,8 +52,16 @@ class PasswordField extends Component {
       errorText = "";
     } else {
       isPasswordFlag = false;
-      errorText =
-        "Password must contain at least 1 lowercase,  at least 1 uppercase alphabetical character, at least 1 numeric character, at least one special character and must  be eight characters or longer";
+      errorText = (
+        <ul style={{ paddingLeft: "17px" }}>
+          Password must contain
+          <li>at least 1 lowercase character</li>
+          <li>at least 1 uppercase character</li>
+          <li>at least 1 numeric character</li>
+          <li>at least 1 special character out of *[!@#$%^&*] </li>
+          <li>be eight characters or longer</li>
+        </ul>
+      );
     }
 
     this.setState({

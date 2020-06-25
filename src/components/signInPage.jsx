@@ -23,7 +23,7 @@ class SignInPage extends Component {
           Please check your email listed below for instructions.
         </p>
         <p>
-          <b>{this.props.email}</b>
+          <b style={{ overflowWrap: "break-word" }}>{this.props.email}</b>
         </p>
         <button type="submit" className="signup-button">
           Sign In

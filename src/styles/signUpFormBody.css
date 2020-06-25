@@ -41,4 +41,5 @@
 
 .signup-heading-bigFont {
   font-weight: 700;
+  overflow-wrap: break-word;
 }
