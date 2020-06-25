@@ -5,7 +5,7 @@ REACT App to create a sign up form
 I have used CREATE REACT APP to set up the environment.
 
 Prerequisite:
-Node.js
+Node.js (Used v12.4.0)
 NPM
 
 How to run this project?
